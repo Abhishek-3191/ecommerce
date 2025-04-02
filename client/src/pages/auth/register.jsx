@@ -1,5 +1,5 @@
 import CommonForm from "@/components/common/form";
-import { Toaster } from "@/components/ui/sonner";
+import { toast } from "sonner";
 import { registerFormControls } from "@/config";
 import { registerUser } from "@/store/auth-slice";
 import { useState } from "react";
@@ -23,10 +23,10 @@ function AuthRegister() {
       const message = data?.payload?.message || "Something went wrong!";
       const variant = data?.payload?.success ? "default" : "destructive";
   
-      <Toaster 
-        title={message} 
-        variant={variant} 
-      />;
+      toast(variant ? "Success" : "Error", {
+        description: message,
+        type: variant ? "success" : "error",
+      });
       
       if (data?.payload?.success) {
         navigate("/auth/login");
