@@ -19,13 +19,18 @@ function AuthLogin() {
     event.preventDefault();
   
     dispatch(loginUser(formData)).then((data) => {
-      const message = data?.payload?.message || "Something went wrong!";
-      const variant = data?.payload?.success ? "default" : "destructive";
-  
-      toast(variant ? "Success" : "Error", {
-        description: message,
-        type: variant ? "success" : "error",
-      });
+      const variant = data?.payload?.success;
+      if (variant) {
+        toast.success("Success",{
+          description: data?.payload?.message,
+          richColors: true,
+        });
+      } else {
+        toast.error("Error",{
+          description: data?.payload?.message,
+          richColors: true,
+        });
+      }
     });
   }
 

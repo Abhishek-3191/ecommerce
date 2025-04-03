@@ -19,17 +19,32 @@ function AuthRegister() {
 
   function onSubmit(event) {
     event.preventDefault();
-    dispatch(registerUser(formData)).then((data) => {
-      const message = data?.payload?.message || "Something went wrong!";
-      const variant = data?.payload?.success ? "default" : "destructive";
+    // dispatch(registerUser(formData)).then((data) => {
+    //   const message = data?.payload?.message || "Something went wrong!";
+    //   const variant = data?.payload?.success ? "default" : "destructive";
   
-      toast(variant ? "Success" : "Error", {
-        description: message,
-        type: variant ? "success" : "error",
-      });
+    //   toast(variant ? "Success" : "Error", {
+    //     description: message,
+    //     type: variant ? "success" : "error",
+    //   });
       
-      if (data?.payload?.success) {
+    //   if (data?.payload?.success) {
+    //     navigate("/auth/login");
+    //   }
+    // });
+    dispatch(registerUser(formData)).then((data) => {
+      const variant = data?.payload?.success;
+      if (variant) {
+        toast.success("Success",{
+          description: data?.payload?.message,
+          richColors: true,
+        });
         navigate("/auth/login");
+      } else {
+        toast.error("Error",{
+          description: data?.payload?.message,
+          richColors: true,
+        });
       }
     });
   }
