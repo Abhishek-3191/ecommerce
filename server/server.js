@@ -1,11 +1,13 @@
+require('dotenv').config();
 const express=require("express");
 const mongoose=require("mongoose");
 const cookieParser=require("cookie-parser");
 const cors=require("cors");
 const authRouter=require("./routes/auth/auth-routes");
+const dburl=process.env.MONGODB_URL;
 
 mongoose.connect(
-    "mongodb+srv://Abhishek:Abhi3191@cluster0.yihhzpx.mongodb.net/"
+    dburl
 ).then(()=>{
     console.log("Mongodb connected");
 })

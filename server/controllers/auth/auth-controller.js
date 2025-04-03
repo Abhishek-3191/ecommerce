@@ -1,3 +1,4 @@
+require("dotenv").config();
 const bcrypt=require('bcryptjs');
 const jwt=require('jsonwebtoken');
 const User=require('../../models/User');
@@ -42,7 +43,7 @@ const loginUser=async(req,res)=>{
         if(!checkUser){
           return res.json({success:false,message:"User doesn't exist"});
         }
-        const checkPasswordMatch=await User.findOne({password});
+        const checkPasswordMatch=await bcrypt.compare(password, checkUser.password);
         if(!checkPasswordMatch){
             return res.json({success:false,message:"Password doesn't match"});
             }
@@ -51,7 +52,7 @@ const loginUser=async(req,res)=>{
             id:checkUser._id,
             email:checkUser.email,
             role:checkUser.role
-        },'CLIENT_SECRET_KEY',{expiresIn:'60m'});
+        },process.env.CLIENT_SECRET_KEY,{expiresIn:'60m'});
 
         res.cookie('token',token,{httpOnly:true,secure:false}).json({success:true,
             message:'Loggedin successfully',
@@ -72,5 +73,32 @@ const loginUser=async(req,res)=>{
     }
 }
 
+//Logout
 
-module.exports={registerUser,loginUser};
+const logoutUser=(req,res)=>{
+    res.clearCookie('token').json({
+        success:true,
+        message:"Logout successfully"
+    })
+};
+
+const authMiddleware=async(req,res,next)=>{
+const token=req.cookies.token;
+if(!token)
+    return res.status(401).json({
+success:false,
+message:'Unauthorized user!'
+})
+try {
+    const decoded=jwt.verify(token,process.env.CLIENT_SECRET_KEY);
+    req.user=decoded;
+    next();
+} catch (error) {
+    res.status(401).json({
+        success:false,
+        message:'Unauthorized user!'
+    });
+}
+}
+
+module.exports={registerUser,loginUser,logoutUser,authMiddleware};
