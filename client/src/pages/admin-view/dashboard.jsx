@@ -9,7 +9,7 @@ function AdminDashboard() {
   const [uploadedImageUrl, setUploadedImageUrl] = useState("");
   const [imageLoadingState, setImageLoadingState] = useState(false);
   const dispatch = useDispatch();
-  const { featureImageList } = useSelector((state) => state.commonFeature);
+  const { featureImageList } = useSelector((state) => state.commonFeature || {});
 
   console.log(uploadedImageUrl, "uploadedImageUrl");
 
