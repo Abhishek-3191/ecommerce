@@ -8,7 +8,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-// import { useToast } from "@/components/ui/use-toast";
+import { toast } from "sonner";
 import { addProductFormElements } from "@/config";
 import {
   addNewProduct,
@@ -42,7 +42,7 @@ function AdminProducts() {
 
   const { productList } = useSelector((state) => state.adminProducts || {});
   const dispatch = useDispatch();
-//   const { toast } = useToast();
+
 
   function onSubmit(event) {
     event.preventDefault();
@@ -74,8 +74,9 @@ function AdminProducts() {
             setOpenCreateProductsDialog(false);
             setImageFile(null);
             setFormData(initialFormData);
-            toast({
-              title: "Product add successfully",
+            toast.success({
+              description: "Product added successfully",
+              richColors:true
             });
           }
         });

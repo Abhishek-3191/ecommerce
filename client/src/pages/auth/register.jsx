@@ -19,19 +19,6 @@ function AuthRegister() {
 
   function onSubmit(event) {
     event.preventDefault();
-    // dispatch(registerUser(formData)).then((data) => {
-    //   const message = data?.payload?.message || "Something went wrong!";
-    //   const variant = data?.payload?.success ? "default" : "destructive";
-  
-    //   toast(variant ? "Success" : "Error", {
-    //     description: message,
-    //     type: variant ? "success" : "error",
-    //   });
-      
-    //   if (data?.payload?.success) {
-    //     navigate("/auth/login");
-    //   }
-    // });
     dispatch(registerUser(formData)).then((data) => {
       const variant = data?.payload?.success;
       if (variant) {
