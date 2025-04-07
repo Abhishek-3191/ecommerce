@@ -59,7 +59,8 @@ const loginUser=async(req,res)=>{
             user:{
             id:checkUser._id,
             email:checkUser.email,
-            role:checkUser.role
+            role:checkUser.role,
+            userName:checkUser.userName,
             }
         });
     } catch (error) {
