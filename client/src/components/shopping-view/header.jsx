@@ -75,9 +75,9 @@ function HeaderRightContent() {
     dispatch(logoutUser());
   }
 
-  // useEffect(() => {
-  //   dispatch(fetchCartItems(user?.id));
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchCartItems(user?.id));
+  }, [dispatch]);
 
   console.log(cartItems, "ABHI");
 
