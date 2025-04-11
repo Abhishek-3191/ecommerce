@@ -11,7 +11,7 @@ const addToCart=async(req,res)=>{
       if(!product){
         return res.status(404).json({success:false,message:"Product not found"});
         }
-        const cart=await Cart.findOne({userId});
+        let cart=await Cart.findOne({userId});
         if(!cart){
            cart=new Cart({userId,items:[]});
 
