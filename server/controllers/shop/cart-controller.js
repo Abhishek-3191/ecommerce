@@ -144,7 +144,7 @@ const fetchCartItems=async(req,res)=>{
         return res.status(400).json({success:false,message:"User id not found!"});
       }
       const cart=await Cart.findOne({userId}).populate({
-        path:'item.productId',
+        path:'items.productId',
         select:'image title price salePrice'
       });
       if(!cart){
