@@ -52,7 +52,13 @@ function ShoppingHome() {
   const { productList, productDetails } = useSelector(
     (state) => state.shopProducts || {}
   );
-  const { featureImageList } = useSelector((state) => state.commonFeature);
+  // const { featureImageList } = useSelector((state) => state.commonFeature);
+  //temp solution
+  const featureImageList = [
+    { image: bannerThree },
+    { image: bannerOne },
+    { image: bannerTwo },
+  ];
 
   const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
 
