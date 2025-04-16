@@ -10,7 +10,7 @@ import {
   fetchAllAddresses,
 } from "@/store/shop/address-slice";
 import AddressCard from "./address-card";
-import {toast} from "sonner";
+import { toast } from "sonner";
 
 const initialAddressFormData = {
   address: "",
@@ -26,16 +26,16 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const { addressList } = useSelector((state) => state.shopAddress);
- 
+
 
   function handleManageAddress(event) {
     event.preventDefault();
 
-    if (addressList.length >= 3 && currentEditedId === null) {
+    if ((addressList?.length ?? 0) >= 3 && currentEditedId === null){
       setFormData(initialAddressFormData);
-      toast.error("Alert",{
+      toast.error("Error",{
         description: "You can add max 3 addresses",
-        richColors:true
+        richColors: true,
       });
 
       return;
@@ -53,7 +53,7 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
             dispatch(fetchAllAddresses(user?.id));
             setCurrentEditedId(null);
             setFormData(initialAddressFormData);
-            toast.succes("Success",{
+            toast.success("Success",{
               description: "Address updated successfully",
               richColors:true
             });
@@ -68,9 +68,9 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
           if (data?.payload?.success) {
             dispatch(fetchAllAddresses(user?.id));
             setFormData(initialAddressFormData);
-            toast.succes("Success",{
+            toast.success("Success",{
               description: "Address added successfully",
-              richColors:true
+              richColors: true,
             });
           }
         });
@@ -82,7 +82,7 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
     ).then((data) => {
       if (data?.payload?.success) {
         dispatch(fetchAllAddresses(user?.id));
-        toast.succes("Success",{
+        toast.success("Sucess",{
           description: "Address deleted successfully",
           richColors:true
         });
@@ -104,7 +104,7 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
 
   function isFormValid() {
     return Object.keys(formData)
-      .map((key) => formData[key].trim() !== "")
+    .map((key) => (formData[key] || "").trim() !== "")
       .every((item) => item);
   }
 
@@ -120,6 +120,7 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
         {addressList && addressList.length > 0
           ? addressList.map((singleAddressItem) => (
               <AddressCard
+                key={singleAddressItem._id}
                 selectedId={selectedId}
                 handleDeleteAddress={handleDeleteAddress}
                 addressInfo={singleAddressItem}
