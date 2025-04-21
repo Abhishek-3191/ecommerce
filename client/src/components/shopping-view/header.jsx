@@ -79,7 +79,7 @@ function HeaderRightContent() {
     dispatch(fetchCartItems(user?.id));
   }, [dispatch]);
 
-  console.log(cartItems, "ABHI");
+  console.log(cartItems, "Cartitems");
 
   return (
     <div className="flex lg:items-center lg:flex-row flex-col gap-4">

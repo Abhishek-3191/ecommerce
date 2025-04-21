@@ -25,6 +25,7 @@ function ShoppingOrders() {
   const { user } = useSelector((state) => state.auth);
   const { orderList, orderDetails } = useSelector((state) => state.shopOrder);
 
+
   function handleFetchOrderDetails(getId) {
     dispatch(getOrderDetails(getId));
   }
@@ -66,7 +67,7 @@ function ShoppingOrders() {
                     <TableCell>
                       <Badge
                         className={`py-1 px-3 ${
-                          orderItem?.orderStatus === "confirmed"
+                          orderItem?.orderStatus === "confirmed" || orderDetails?.orderStatus === "delivered"
                             ? "bg-green-500"
                             : orderItem?.orderStatus === "rejected"
                             ? "bg-red-600"
@@ -75,6 +76,7 @@ function ShoppingOrders() {
                       >
                         {orderItem?.orderStatus}
                       </Badge>
+                      
                     </TableCell>
                     <TableCell>${orderItem?.totalAmount}</TableCell>
                     <TableCell>

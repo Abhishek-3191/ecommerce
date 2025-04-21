@@ -104,7 +104,8 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
 
   function isFormValid() {
     return Object.keys(formData)
-    .map((key) => (formData[key] || "").trim() !== "")
+    // .map((key) => (formData[key] || "").trim() !== "")
+    .map((key) => String(formData[key] || "").trim() !== "")
       .every((item) => item);
   }
 
