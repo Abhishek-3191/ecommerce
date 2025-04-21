@@ -84,7 +84,7 @@ function ShoppingCheckout() {
     };
 
     dispatch(createNewOrder(orderData)).then((data) => {
-      console.log(data, "sangam");
+      console.log(data, "Orderdata");
       if (data?.payload?.success) {
         setIsPaymemntStart(true);
       } else {
