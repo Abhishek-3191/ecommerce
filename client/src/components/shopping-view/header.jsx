@@ -154,13 +154,35 @@ function ShoppingHeader() {
             <HeaderRightContent />
           </SheetContent>
         </Sheet>
-        <div className="hidden lg:block">
-          <MenuItems />
-        </div>
+        {/* <div className="hidden lg:block">
+          <MenuItems /> */}
+        {/* </div>
 
         <div className="hidden lg:block">
           <HeaderRightContent />
-        </div>
+        </div> */}
+        <div className="hidden lg:flex items-center gap-6">
+  <MenuItems />
+
+        <div className="relative">
+    <input
+      type="text"
+      placeholder="Search products..."
+      className="border rounded-full px-4 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          const query = e.target.value.trim();
+          if (query) {
+            // Navigate to search page with query param
+            window.location.href = `/shop/search?query=${query}}`;
+          }
+        }
+      }}
+    />
+  </div>
+
+  <HeaderRightContent />
+</div>
       </div>
     </header>
   );
