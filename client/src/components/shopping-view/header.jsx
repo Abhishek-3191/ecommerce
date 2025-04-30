@@ -17,6 +17,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import {
+  getSearchResults,
+  resetSearchResults,
+} from "@/store/shop/search-slice";
+// import { useSearchParams } from "react-router-dom";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import { logoutUser } from "@/store/auth-slice";
 import UserCartWrapper from "./cart-wrapper";
@@ -133,8 +138,33 @@ function HeaderRightContent() {
 }
 
 function ShoppingHeader() {
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  
+  const [keyword, setKeyword] = useState("");
+  const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const dispatch = useDispatch();
+  const { searchResults } = useSelector((state) => state.shopSearch);
+  const { productDetails } = useSelector((state) => state.shopProducts);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (keyword && keyword.trim() !== "") {
+        if (!location.pathname.includes("/shop/search")) {
+          navigate(`/shop/search?keyword=${keyword}`);
+        } else {
+          setSearchParams(new URLSearchParams(`?keyword=${keyword}`));
+        }
+        dispatch(getSearchResults(keyword));
+      } else {
+        dispatch(resetSearchResults());
+        setSearchParams(new URLSearchParams(`?keyword=`));
+      }
+    }, 500); // debounce input to reduce reloads
+  
+    return () => clearTimeout(timer);
+  }, [keyword]);
+
+  const navigate = useNavigate();
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
       <div className="flex h-16 items-center justify-between px-4 md:px-6">
@@ -162,22 +192,29 @@ function ShoppingHeader() {
           <HeaderRightContent />
         </div> */}
         <div className="hidden lg:flex items-center gap-6">
-  <MenuItems />
+        <MenuItems />
 
         <div className="relative">
     <input
       type="text"
       placeholder="Search products..."
       className="border rounded-full px-4 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+      // onKeyDown={(e) => {
+      //   if (e.key === "Enter") {
+      //     const query = e.target.value.trim();
+      //     if (query) {
+      //       // Navigate to search page with query param
+      //      navigate(`/shop/search?keyword=${query}`);
+      //     }
+      //   }
+      // }}
       onKeyDown={(e) => {
         if (e.key === "Enter") {
-          const query = e.target.value.trim();
-          if (query) {
-            // Navigate to search page with query param
-            window.location.href = `/shop/search?query=${query}}`;
-          }
+          navigate(`/shop/search?keyword=${keyword}`);
         }
       }}
+      
+      onChange={(event) => setKeyword(event.target.value)}
     />
   </div>
 
