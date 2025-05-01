@@ -143,12 +143,12 @@ function HeaderRightContent() {
 
 function ShoppingHeader() {
   
-  const [keyword, setKeyword] = useState("");
-  const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const dispatch = useDispatch();
-  const { searchResults } = useSelector((state) => state.shopSearch);
-  const { productDetails } = useSelector((state) => state.shopProducts);
+  // const [keyword, setKeyword] = useState("");
+  // const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
+  // const [searchParams, setSearchParams] = useSearchParams();
+  // const dispatch = useDispatch();
+  // const { searchResults } = useSelector((state) => state.shopSearch);
+  // const { productDetails } = useSelector((state) => state.shopProducts);
 
   // useEffect(() => {
   //   const timer = setTimeout(() => {
@@ -168,22 +168,22 @@ function ShoppingHeader() {
   //   return () => clearTimeout(timer);
   // }, [keyword]);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (keyword?.trim()) {
-        dispatch(getSearchResults(keyword));
-        setSearchParams(new URLSearchParams(`?keyword=${keyword}`));
-      } else {
-        dispatch(resetSearchResults());
-        setSearchParams(new URLSearchParams(`?keyword=`));
-      }
-    }, 400);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     if (keyword?.trim()) {
+  //       dispatch(getSearchResults(keyword));
+  //       setSearchParams(new URLSearchParams(`?keyword=${keyword}`));
+  //     } else {
+  //       dispatch(resetSearchResults());
+  //       setSearchParams(new URLSearchParams(`?keyword=`));
+  //     }
+  //   }, 400);
   
-    return () => clearTimeout(timer);
-  }, [keyword]);
+  //   return () => clearTimeout(timer);
+  // }, [keyword]);
   
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
       <div className="flex h-16 items-center justify-between px-4 md:px-6">
@@ -203,14 +203,14 @@ function ShoppingHeader() {
             <HeaderRightContent />
           </SheetContent>
         </Sheet>
-        {/* <div className="hidden lg:block">
-          <MenuItems /> */}
-        {/* </div>
+        <div className="hidden lg:block">
+          <MenuItems />
+        </div>
 
         <div className="hidden lg:block">
           <HeaderRightContent />
-        </div> */}
-        <div className="hidden lg:flex items-center gap-6">
+        </div>
+        {/* <div className="hidden lg:flex items-center gap-6">
         <MenuItems />
 
         <div className="relative">
@@ -238,7 +238,7 @@ function ShoppingHeader() {
   </div>
 
   <HeaderRightContent />
-</div>
+</div> */}
       </div>
     </header>
   );
