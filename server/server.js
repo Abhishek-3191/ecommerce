@@ -30,7 +30,7 @@ const app=express();
 
 app.use(
     cors({
-        origin:process.env.CLIENT_BASE_URL,
+        origin:process.env.CLIENT_BASE_URL || 'https://ecommerce-1-bti4.onrender.com',
         method:['GET','POST','PUT','DELETE'],
         allowedHeaders:[
             'Content-Type',
