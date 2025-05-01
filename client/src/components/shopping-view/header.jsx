@@ -150,23 +150,38 @@ function ShoppingHeader() {
   const { searchResults } = useSelector((state) => state.shopSearch);
   const { productDetails } = useSelector((state) => state.shopProducts);
 
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     if (keyword && keyword.trim() !== "") {
+  //       if (!location.pathname.includes("/shop/search")) {
+  //         navigate(`/shop/search?keyword=${keyword}`);
+  //       } else {
+  //         setSearchParams(new URLSearchParams(`?keyword=${keyword}`));
+  //       }
+  //       dispatch(getSearchResults(keyword));
+  //     } else {
+  //       dispatch(resetSearchResults());
+  //       setSearchParams(new URLSearchParams(`?keyword=`));
+  //     }
+  //   }, 500); // debounce input to reduce reloads
+  
+  //   return () => clearTimeout(timer);
+  // }, [keyword]);
+
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (keyword && keyword.trim() !== "") {
-        if (!location.pathname.includes("/shop/search")) {
-          navigate(`/shop/search?keyword=${keyword}`);
-        } else {
-          setSearchParams(new URLSearchParams(`?keyword=${keyword}`));
-        }
+      if (keyword?.trim()) {
         dispatch(getSearchResults(keyword));
+        setSearchParams(new URLSearchParams(`?keyword=${keyword}`));
       } else {
         dispatch(resetSearchResults());
         setSearchParams(new URLSearchParams(`?keyword=`));
       }
-    }, 500); // debounce input to reduce reloads
+    }, 400);
   
     return () => clearTimeout(timer);
   }, [keyword]);
+  
 
   const navigate = useNavigate();
   return (
