@@ -24,6 +24,12 @@ import PaypalReturnPage from "./pages/shopping-view/paypal-return";
 import PaymentSuccessPage from "./pages/shopping-view/payment-success";
 import SearchProducts from "./pages/shopping-view/search";
 
+
+//on local use npm run dev both on server and client to run
+
+
+
+
 function App() {
   const { user, isAuthenticated, isLoading } = useSelector(
     (state) => state.auth
