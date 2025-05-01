@@ -17,7 +17,7 @@ const shopSearchRouter=require("./routes/shop/search-routes");
 const shopReviewRouter=require("./routes/shop/review-routes");
 
 const commonFeatureRouter = require("./routes/common/feature-routes");
-
+const PORT=5000 || process.env.PORT;
 mongoose.connect(
     dburl
 ).then(()=>{
@@ -27,11 +27,10 @@ mongoose.connect(
     console.log("Mongodb doesnt connected",err);
 })
 const app=express();
-const PORT=process.env.PORT || 5000;
 
 app.use(
     cors({
-        origin:"http://localhost:5173",
+        origin:process.env.CLIENT_BASE_URL,
         method:['GET','POST','PUT','DELETE'],
         allowedHeaders:[
             'Content-Type',
