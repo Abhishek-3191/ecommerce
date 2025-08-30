@@ -3,9 +3,6 @@ const bcrypt=require('bcryptjs');
 const jwt=require('jsonwebtoken');
 const User=require('../../models/User');
 
-
-
-
 //Register
 const registerUser=async(req,res)=>{
     const {userName,password,email}=req.body;
@@ -54,15 +51,15 @@ const loginUser=async(req,res)=>{
             role:checkUser.role
         },process.env.CLIENT_SECRET_KEY,{expiresIn:'60m'});
 
-        // res.cookie('token',token,{httpOnly:true,secure:true}).json({success:true,
-        //     message:'Loggedin successfully',
-        //     user:{
-        //     id:checkUser._id,
-        //     email:checkUser.email,
-        //     role:checkUser.role,
-        //     userName:checkUser.userName,
-        //     }
-        // });
+        res.cookie('token',token,{httpOnly:true,secure:true}).json({success:true,
+            message:'Loggedin successfully',
+            user:{
+            id:checkUser._id,
+            email:checkUser.email,
+            role:checkUser.role,
+            userName:checkUser.userName,
+            }
+        });
 
         res.status(200).json({
             success:true,
@@ -74,7 +71,7 @@ const loginUser=async(req,res)=>{
                     role:checkUser.role,
                     userName:checkUser.userName,
                     }
-        })
+        }); 
 
     } catch (error) {
         console.log("error",error);
