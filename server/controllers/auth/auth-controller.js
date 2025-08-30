@@ -51,15 +51,15 @@ const loginUser=async(req,res)=>{
             role:checkUser.role
         },process.env.CLIENT_SECRET_KEY,{expiresIn:'60m'});
 
-        res.cookie('token',token,{httpOnly:true,secure:true}).json({success:true,
-            message:'Loggedin successfully',
-            user:{
-            id:checkUser._id,
-            email:checkUser.email,
-            role:checkUser.role,
-            userName:checkUser.userName,
-            }
-        });
+        // res.cookie('token',token,{httpOnly:true,secure:true}).json({success:true,
+        //     message:'Loggedin successfully',
+        //     user:{
+        //     id:checkUser._id,
+        //     email:checkUser.email,
+        //     role:checkUser.role,
+        //     userName:checkUser.userName,
+        //     }
+        // });
 
         res.status(200).json({
             success:true,
