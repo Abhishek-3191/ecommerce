@@ -29,14 +29,14 @@ Live Preview-https://ecommerce-deploy-2.onrender.com/
 ## ⚙️ Project Setup
 
 ### 1. Clone the repository
-git clone https://github.com/Abhishek-3191/ecommerce.git
-cd ecommerce
-2. Install dependencies
-bash
-Copy code
-npm install
-3. Setup environment variables
-Create a .env file:
+- git clone https://github.com/Abhishek-3191/ecommerce.git
+- cd ecommerce
+- 2. Install dependencies
+- bash
+- Copy code
+- npm install
+- 3. Setup environment variables
+- Create a .env file:
 
 ### .env
 - PORT=YOUR_PORT
