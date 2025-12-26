@@ -29,7 +29,6 @@ Live Preview-https://ecommerce-deploy-2.onrender.com/
 ## ⚙️ Project Setup
 
 ### 1. Clone the repository
-```bash
 git clone https://github.com/Abhishek-3191/ecommerce.git
 cd ecommerce
 2. Install dependencies
@@ -39,8 +38,7 @@ npm install
 3. Setup environment variables
 Create a .env file:
 
-ini
-Copy code
+
 PORT=YOUR_PORT
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
@@ -49,8 +47,8 @@ bash
 Copy code
 npm start
 Open http://localhost:PORT in your browser.
-
-🧩 Challenges & Solutions
+---
+### 🧩 Challenges & Solutions
 1️⃣ Secure Authentication
 Challenge:
 Handling user authentication securely with token protection.
@@ -85,8 +83,8 @@ Keeping code organized as features grew.
 
 Solution:
 Used modular MVC-style structure (controllers, routes, models) for scalability and readability.
-
-📁 Project Structure
+---
+### 📁 Project Structure
 lua
 Copy code
 controllers/   – API logic
@@ -94,7 +92,8 @@ models/        – MongoDB schemas
 routes/        – API endpoints
 middleware/    – Auth & error handlers
 config/        – DB & env configs
-🔮 Future Improvements
+---
+### 🔮 Future Improvements
 Add shopping cart & checkout flow
 
 Integrate payment gateway
@@ -102,8 +101,8 @@ Integrate payment gateway
 Add product search, filters & pagination
 
 UI/UX enhancements with responsive design
-
-👨‍💻 Author
+---
+### 👨‍💻 Author
 Abhishek Srivastava
 🔗 GitHub: https://github.com/Abhishek-3191
 🔗 Portfolio: https://abhishek-srivastava.vercel.app/
