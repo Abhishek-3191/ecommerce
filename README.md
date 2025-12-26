@@ -38,7 +38,7 @@ npm install
 3. Setup environment variables
 Create a .env file:
 
-
+### .env
 PORT=YOUR_PORT
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
@@ -47,7 +47,7 @@ bash
 Copy code
 npm start
 Open http://localhost:PORT in your browser.
----
+
 ### 🧩 Challenges & Solutions
 1️⃣ Secure Authentication
 Challenge:
@@ -83,7 +83,7 @@ Keeping code organized as features grew.
 
 Solution:
 Used modular MVC-style structure (controllers, routes, models) for scalability and readability.
----
+
 ### 📁 Project Structure
 lua
 Copy code
@@ -92,7 +92,7 @@ models/        – MongoDB schemas
 routes/        – API endpoints
 middleware/    – Auth & error handlers
 config/        – DB & env configs
----
+
 ### 🔮 Future Improvements
 Add shopping cart & checkout flow
 
@@ -101,7 +101,7 @@ Integrate payment gateway
 Add product search, filters & pagination
 
 UI/UX enhancements with responsive design
----
+
 ### 👨‍💻 Author
 Abhishek Srivastava
 🔗 GitHub: https://github.com/Abhishek-3191
