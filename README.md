@@ -39,12 +39,11 @@ npm install
 Create a .env file:
 
 ### .env
-PORT=YOUR_PORT
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-4. Run the app
-bash
-Copy code
+- PORT=YOUR_PORT
+- MONGO_URI=your_mongodb_connection_string
+- JWT_SECRET=your_jwt_secret
+- 4. Run the app
+     IN bash 
 npm start
 Open http://localhost:PORT in your browser.
 
@@ -87,11 +86,11 @@ Used modular MVC-style structure (controllers, routes, models) for scalability a
 ### 📁 Project Structure
 lua
 Copy code
-controllers/   – API logic
-models/        – MongoDB schemas
-routes/        – API endpoints
-middleware/    – Auth & error handlers
-config/        – DB & env configs
+- controllers/   – API logic
+- models/        – MongoDB schemas
+- routes/        – API endpoints
+- middleware/    – Auth & error handlers
+- config/        – DB & env configs
 
 ### 🔮 Future Improvements
 Add shopping cart & checkout flow
